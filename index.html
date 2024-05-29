@@ -8,17 +8,32 @@
 </head>
 <style>
    .toDo{
-    position: sticky;
-    top: 10px;
-    z-index: 10;
+   
     background-color: #fff;
    } 
   .res__div{
     width: 250px;
     height: 400px;
-   
+   position: relative;
    margin: 15px;
    background-color: gray;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .res__divc{
+    width: 250px;
+    height: 400px;
+   margin: 15px;
+   position: relative;
+
+   background-color: rgb(221, 68, 21);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .addUtsenka{
+
+    width: 250px;
+    height: 400px;
+   margin: 15px;
+   background-color: crimson;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
   #toDo__btn{
@@ -28,6 +43,25 @@
     width: 25px;
     height: 25px;
     transition: all ease 0.2s;
+  }
+  .health{
+    position: absolute;
+    cursor: cell;
+    left: 50%;
+transform: translateX(-50%);
+    bottom: 10px;
+font-size: 25px;
+
+  }
+  .health2{
+    position: absolute;
+    left: 50%;
+    cursor: cell;
+
+    transform: translateX(-50%);
+font-size: 25px;
+    bottom: 10px;
+    background-color: #fff;
   }
   .addTodo{
     width: 900px;
@@ -41,6 +75,12 @@
     
    
   }
+  .toDo__form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
   #toDo__btn:active{
     transform: scale(0.7);
   }
@@ -53,14 +93,7 @@
     justify-content: center;
     flex-direction: column;
   }
-.todo__form{
-  width: 900px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  border: 1px solid #000;
-  justify-content: space-between;
-}
+
 .res__img{
   width: 100%;
   height: 50%;
@@ -73,26 +106,19 @@ b{
   font-size: 22px;
 }
 
-#clock{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: crimson;
-  z-index: 100;
-}
+
 .clock__card{
   width: 500px;
   height: 500px;
   position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   border-radius: 50%;
   border: 20px solid darkgoldenrod;
   background-color: #fff;
+
 }
 .clock__card .raqam{
   --rotation:0;
@@ -154,6 +180,11 @@ b{
   transform: translateX(-56%) rotate(calc(var(--rotation)*1deg));
 
 }
+.utsenka___wrap{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.61);
+}
 .clock__card .mil.second{
  
   width: 10px;
@@ -170,64 +201,179 @@ border: 4px solid #000;
 background-color: green;
 
 }
-#header{
+.hiden{
+  display: none;
+}
+.clock{
+  position: relative;
+  position: fixed;
   width: 100%;
-  height: 60px;
-  margin: 0 auto;
-  margin-bottom: 50px;
-  background-color: #fff ;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-size: cover;
+  background: url('https://nii-nm.ru/assets/images/foto-for-articles/bioritm3.jpg');
 }
-.container{
-  width: 1040px;
-  margin: auto;
+.clock__tit{
+position: absolute;
+left: 47%;
+top: 50px;
+padding: 12px 45px;
+color: #000;
+background-color: aqua;
+border: none;
+border-radius: 15px;
+transition: all ease 1.2s;
 }
-.header__nav{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
+.clock__tit:active{
+  transform: scale(0.7);
+}
+.todo__img{
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  object-fit: cover;
+}
+.wrap{
+  width: 400px;
+  background-color: #222;
+}
+.aksiya{
+  color: red;
+  text-align: center;
+}
+.aksiya__tit{
+  color: #fff;
+  text-align: center;
+}
+.utsenka___wrap{
+  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+background-color: yellow;
+}
 
+.utsenka__tit{
+  color: #fff;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%,-80%);
 }
-.header__list{
+.card{
   width: 500px;
-  list-style-type: none;
+  height: 500px;
+  background-color: #fff;
+}
+.addUtsenk{
+  width: 900px;
+  height: 500px;
+  z-index: 100;
+  overflow-y: auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+justify-content: space-between;
+flex-wrap: wrap;
+align-items: center;
 }
 
 </style>
 <body>
- 
+  <div class="body">
+   
     <div id="uy" class="toDo">
-<div class="todo__form--div">
-  
-  <form action="#" class="toDo__form">
-    <select  id="sort-id">
-      <option disabled selected>Sorted Todos</option>
-      <option value="arzon">Arzon</option>
-      <option value="qimmat">Qimmat</option>
-      <option value="newst">Newst</option>
-      <option value="oldest">Oldest</option>
+      <div class="todo__form--div">
+        
+        <form action="#" class="toDo__form">
+          <select  id="sort-id">
+            <option disabled selected>Sorted Todos</option>
+            <option value="arzon">Arzon</option>
+            <option value="qimmat">Qimmat</option>
+            <option value="newst">Newst</option>
+            <option value="oldest">Oldest</option>
+           
+          </select>
+        
+          <input type="text" class="toDo__inp" placeholder="OVQAT NOMI">
+          <input type="text" class="toDo__inp2" placeholder="OVQAT NARXI">
+      
+          <button id="toDo__btn">+</button>
+      
+         <img class="todo__img header__linkk" src="https://free-png.ru/wp-content/uploads/2022/11/free-png.ru-280.png" alt="">
+      </form>
+      </div>
+      <div class="addTodo">
      
-    </select>
+      </div>
+  <div class="wrap">
+    <h1 class="aksiya__tit">Hurmatlik mijoz siz  Shu <a class="aksia__btn" href="#">Button</a> ni ezish orqalik aksiyaga tushgan tovarlarni ko'rishingiz mumkin </h1>
   
-    <input type="text" class="toDo__inp" placeholder="OVQAT NOMI">
-    <input type="text" class="toDo__inp2" placeholder="OVQAT NARXI">
+  </div>
+  <div class="utsenka___wrap hiden">
+   <h1 class="utsenka__tit hiden">
+    aksiayaga tushgan tovarlar va ularning Tugash vaqti
+   </h1>
+   <h1 class="aksiya"></h1>
+  </div>
+  <div class="addUtsenk hiden"></div>
+      
+          </div>
+  </div>
+        <div  class="clock hiden">
+        <button class="clock__tit">back</button>
+        </div>
+        <div class="clock__card hiden">
+          <div class="mil soat" bu-soat></div>
+          <div class="mil daqiqa" bu-minut></div>
+          <div class="mil second" bu-second></div>
+          <div class="raqam raqam1">1</div>
+          <div class="raqam raqam2">2</div>
+          <div class="raqam raqam3">3</div>
+          <div class="raqam raqam4">4</div>
+          <div class="raqam raqam5">5</div>
+          <div class="raqam raqam6">6</div>
+          <div class="raqam raqam7">7</div>
+          <div class="raqam raqam8">8</div>
+          <div class="raqam raqam9">9</div>
+          <div class="raqam raqam10">10</div>
+          <div class="raqam raqam11">11</div>
+          <div class="raqam raqam12">12</div>
+         
+          </div>
+</body>
+<script src="./js/main.js"></script>
+</html>
 
-    <button id="toDo__btn">+</button>
-
+<!-- 
+   
+    <div id="clock" class="none">
+  <header id="header">
+    <div class="container">
+<nav class="header__3nav">
+<ul class="header__list">
+  <li class="header__list--item">
+    <a href="#uy" class="header__link">Uy</a>
     
-</form>
-</div>
-<div class="addTodo">
+  </li>
+  <li class="header__list--item">
+    
+  
 
-</div>
+
+  </li>
+  <li class="header__list--item">
+   
+    <a href="" class="header__linkk">Soat</a>
+
+
+  </li>
+</ul>
+</nav>
     </div>
-<!-- <div id="clock">
- 
- <div class="clock__card">
+  </header>
+ <div class="clock__card ">
  <div class="mil soat" bu-soat></div>
  <div class="mil daqiqa" bu-minut></div>
  <div class="mil second" bu-second></div>
@@ -245,7 +391,5 @@ background-color: green;
  <div class="raqam raqam12">12</div>
 
  </div>
-</div> -->
-</body>
-<script src="./js/main.js"></script>
-</html>
+</div>
+ -->
