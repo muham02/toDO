@@ -154,6 +154,8 @@ let resu = toDos.filter(todo=>todo.name ==inp.value)
   toDos = resu
  }else{
   toDos = JSON.parse(localStorage.getItem("toDos"))
+  render()
+
  }
  render()
 }
@@ -166,6 +168,7 @@ const filterNarxTodo = ()=>{
    toDos = resul
   }else{
    toDos = JSON.parse(localStorage.getItem("toDos"))
+   render()
   }
   render()
  }
@@ -253,16 +256,7 @@ aksiyaItem.forEach((item,index)=>{
 
 })
 })
-function heall(e){
-  console.log(e.target);
-  if(e.target.className === 'health'){
-  // const like= localStorage.setItem('toDos',JSON.stringify(toDos))
-   console.log(e.target.getAttribute("data-item-i"));
-    
 
-  }
-  }
-res.addEventListener('click',heall);
 clock.addEventListener("click",(e)=>{
   e.preventDefault()
  
